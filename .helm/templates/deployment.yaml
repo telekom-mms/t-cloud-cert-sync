@@ -37,6 +37,8 @@ spec:
               value: {{ .Values.config.tCloudProjectId | quote }}
             - name: KEEP_CERT_REGEX
               value: {{ .Values.config.keepCertRegex | quote }}
+            - name: WATCH_NAMESPACE
+              value: {{ .Values.config.watchNamespace | quote }}
             - name: OS_ACCESS_KEY
               valueFrom:
                 secretKeyRef:

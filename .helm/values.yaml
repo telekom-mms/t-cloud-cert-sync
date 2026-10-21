@@ -18,6 +18,9 @@ config:
   tCloudDomainName: "MEINE-T-CLOUD-DOMAIN"
   tCloudProjectId: ""
   keepCertRegex: "dummy"
+  # -- Only watch TLS Secrets in this namespace and grant Secret access there only (Role instead of
+  # ClusterRole). Empty watches every namespace with cluster-wide Secret access.
+  watchNamespace: ""
 
 credentials:
   existingSecret:
