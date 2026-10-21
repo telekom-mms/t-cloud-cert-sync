@@ -1,6 +1,7 @@
 ---
 # Source: t-cloud-cert-sync/templates/rbac.yaml
 {{- $roleName := printf "%s-%s-secret-reader" .Release.Name .Release.Namespace | trunc 63 | trimSuffix "-" }}
+{{- $watchNamespace := .Values.config.watchNamespace }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -8,21 +9,27 @@ metadata:
   namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: {{ if $watchNamespace }}Role{{ else }}ClusterRole{{ end }}
 metadata:
   name: {{ $roleName }}
+  {{- with $watchNamespace }}
+  namespace: {{ . }}
+  {{- end }}
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
     verbs: ["get", "list", "watch", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: {{ if $watchNamespace }}RoleBinding{{ else }}ClusterRoleBinding{{ end }}
 metadata:
   name: {{ $roleName }}
+  {{- with $watchNamespace }}
+  namespace: {{ . }}
+  {{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: {{ if $watchNamespace }}Role{{ else }}ClusterRole{{ end }}
   name: {{ $roleName }}
 subjects:
   - kind: ServiceAccount
