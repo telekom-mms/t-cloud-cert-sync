@@ -7,7 +7,7 @@ Create a Kubernetes Secret named `t-cloud-credentials` in the release namespace 
 Add the GitHub Pages Helm repository and install the latest stable chart:
 
 ```bash
-helm repo add t-cloud-cert-sync https://sfhl.github.io/t-cloud-cert-sync/charts
+helm repo add t-cloud-cert-sync https://telekom-mms.github.io/t-cloud-cert-sync/charts
 helm repo update
 helm upgrade --install cert-sync cert-sync/t-cloud-cert-sync \
   --namespace t-cloud-cert-sync --create-namespace \
