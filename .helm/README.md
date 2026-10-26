@@ -1,6 +1,6 @@
 # Helm Chart: T Cloud ELB Certificate Sync
 
-The controller watches TLS Secrets in all namespaces and patches their sync-state annotations. Review the cluster-wide Secret permissions before installing it.
+By default the controller watches TLS Secrets in all namespaces and patches their sync annotations, with cluster-wide Secret permissions. Set `config.watchNamespace` to watch a single namespace instead; the chart then grants a Role in that namespace only.
 
 Create a Kubernetes Secret named `t-cloud-credentials` in the release namespace with keys `OS_ACCESS_KEY` and `OS_SECRET_KEY`. Do not commit actual credentials to Helm values or Git.
 
