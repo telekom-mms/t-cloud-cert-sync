@@ -3,7 +3,7 @@ module otc-cert-sync
 go 1.26.0
 
 require (
-	github.com/opentelekomcloud/gophertelekomcloud v0.9.9
+	github.com/opentelekomcloud/gophertelekomcloud v0.9.10
 	k8s.io/api v0.37.1
 	k8s.io/apimachinery v0.37.1
 	k8s.io/client-go v0.37.1
